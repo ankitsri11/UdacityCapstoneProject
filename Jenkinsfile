@@ -1,5 +1,5 @@
 pipeline {
-  agent any 
+  agent any
   stages {
     stage('Lint') {
       steps {
@@ -11,5 +11,13 @@ pipeline {
         sh 'docker build --tag=capstone .'
       }
     }
+    stage('Push docker image to ECR') {
+      steps {
+        sh 'docker.withRegistry("https://us-west-2.console.aws.amazon.com", "ecr:us-west-2:deploy") {
+  docker.image("capstone").push()
+}'
+      }
+    }
+
           }
 }
