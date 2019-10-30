@@ -13,11 +13,10 @@ pipeline {
     }
     stage('Push docker image to ECR') {
       steps {
-        sh 'docker.withRegistry("https://us-west-2.console.aws.amazon.com", "ecr:us-west-2:deploy") {
-  docker.image("capstone").push()
-}'
+        sh 'docker.withRegistry("https://us-west-2.console.aws.amazon.com", "ecr:us-west-2:deploy") { \
+        docker.image("capstone").push() \
+      }'
       }
     }
-
-          }
+  }
 }
