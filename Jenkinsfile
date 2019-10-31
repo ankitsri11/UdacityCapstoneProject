@@ -13,7 +13,7 @@ pipeline {
     }
     stage('Push docker image to ECR') {
       steps {
-        sh (docker.withRegistry("https://719367038294.dkr.ecr.us-west-2.amazonaws.com/udacity", "ecr:us-west-2:deploy") { docker.image("capstone").push() })
+        docker.withRegistry("https://719367038294.dkr.ecr.us-west-2.amazonaws.com/udacity", "ecr:us-west-2:deploy") { docker.image("capstone").push() }
       }
     }
   }
