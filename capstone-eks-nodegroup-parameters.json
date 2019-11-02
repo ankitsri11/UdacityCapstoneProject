@@ -1,0 +1,30 @@
+[
+    {
+    "ParameterKey": "ClusterName",
+    "ParameterValue": "Capstone"
+    },
+    {
+    "ParameterKey": "VpcId",
+    "ParameterValue": "vpc-0a63da84c66bc8aa4"
+    },
+    {
+    "ParameterKey": "ClusterControlPlaneSecurityGroup",
+    "ParameterValue": "sg-05b4088a738dde331"
+    },
+    {
+        "ParameterKey": "NodeGroupName",
+        "ParameterValue": "CapstoneNodeGroup"
+    },
+    {
+        "ParameterKey": "NodeImageId",
+        "ParameterValue": "ami-05d586e6f773f6abf"
+    },
+    {
+        "ParameterKey": "Subnets",
+        "ParameterValue": "subnet-0747aabd78c637c33,subnet-0ff407e8fe08c4e7f,subnet-01f41921073113af3"
+    },
+    {
+        "ParameterKey": "KeyName",
+        "ParameterValue": "test-con"
+    }
+]
