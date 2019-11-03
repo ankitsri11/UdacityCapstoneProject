@@ -102,7 +102,24 @@ curl -o aws-auth-cm.yaml https://amazon-eks.s3-us-west-2.amazonaws.com/cloudform
 ```
 <Replace the <ARN of instance role (not instance profile)> snippet with the NodeInstanceRole value that you recorded in the previous worker node stack step.>
 
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system
+data:
+  mapRoles: |
+    - rolearn: <ARN of instance role (not instance profile)>
+      username: system:node:{{EC2PrivateDNSName}}
+      groups:
+        - system:bootstrappers
+        - system:nodes
+ ```
+
 ![images/worker_node_output](images/worker_node_output.png)
+
+Apply the configuration. 
 
 ```
 kubectl apply -f aws-auth-cm.yaml
