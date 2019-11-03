@@ -46,6 +46,10 @@ Below are the images for Jenkins pipeline:
 
 a. Create infra stack using following cloudformation script.
 
+```
+./create-stack.sh CapstoneProject capstone-eks-vps.yaml
+```
+
 b. Create EKS structure from the Dashboard. One can use below commands as well:
 
 ```
@@ -74,10 +78,45 @@ kubectl get svc
 
 e. Configure worker nodes using below cloudformation script.
 
+```
+aws cloudformation create-stack --stack-name Capstone-eks-worker-stack --template-body file://capstone-eks-nodegroup.yaml --parameters file://eks-worker-group-parameters.json --capabilities CAPABILITY_NAMED_IAM
+```
+
 f. Enable worker nodes to join cluster.
 
+```
 curl -o aws-auth-cm.yaml https://amazon-eks.s3-us-west-2.amazonaws.com/cloudformation/2019-10-08/aws-auth-cm.yaml
+```
+<Replace the <ARN of instance role (not instance profile)> snippet with the NodeInstanceRole value that you recorded in the previous procedure, and save the file.>
 
+```
 kubectl apply -f aws-auth-cm.yaml
+```
+Watch the status of the created nodes.
 
+```
+kubectl get nodes --watch
+```
 
+g. Launching app inside the Kubernetes cluster
+
+Deploy below deployment file and a service file.
+
+```
+kubectl apply -f nginx.yaml
+kubectl apply -f nginx-service.yaml
+```
+
+Run below to get the details of nginx app in the  cluster.
+
+```
+kubectl get svc service-helloworld -o yaml
+```
+
+Output:
+
+[image]
+
+Access application on the browser.
+
+[image]
