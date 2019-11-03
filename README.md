@@ -119,7 +119,7 @@ data:
 
 ![images/worker_node_output](images/worker_node_output.png)
 
-Apply the configuration. 
+Apply the configuration.
 
 ```
 kubectl apply -f aws-auth-cm.yaml
@@ -130,6 +130,10 @@ Watch the status of the created nodes.
 kubectl get nodes --watch
 ```
 ![images/watch_nodes](images/watch_nodes.png)
+
+Three worker nodes created as per the setup. Refer below EC2 dashboard.
+
+![images/ec2_instance](images/ec2_instance.png)
 
 #### 3. Launching app inside the Kubernetes cluster
 
