@@ -2,7 +2,7 @@
 
 Building and deploying nginx sample project to AWS EKS cluster using Jenkins and Cloudformation.
 
-### Environment Setup: 
+### Environment Setup:
 
 1. Install Jenkins locally or on EC2 instance.
 
@@ -65,8 +65,8 @@ a. Create infra stack using following cloudformation script.
 b. Create EKS structure from the Dashboard. One can use below commands as well:
 
 ```
-aws eks --region <region> create-cluster --name <clusterName> 
---role-arn <EKS-role-ARN> --resources-vpc-config 
+aws eks --region <region> create-cluster --name <clusterName>
+--role-arn <EKS-role-ARN> --resources-vpc-config
 subnetIds=<subnet-id-1>,<subnet-id-2>,<subnet-id-3>,securityGroupIds=
 <security-group-id>
 ```
@@ -95,7 +95,7 @@ aws cloudformation create-stack --stack-name Capstone-eks-worker-stack --templat
 
 f. Enable worker nodes to join cluster.
 
-Download configuration map file using below: 
+Download configuration map file using below:
 
 ```
 curl -o aws-auth-cm.yaml https://amazon-eks.s3-us-west-2.amazonaws.com/cloudformation/2019-10-08/aws-auth-cm.yaml
@@ -114,7 +114,7 @@ kubectl get nodes --watch
 ```
 ![images/watch_nodes](images/watch_nodes.png)
 
-g. Launching app inside the Kubernetes cluster
+#### 3. Launching app inside the Kubernetes cluster
 
 Deploy below deployment file and a service file.
 
@@ -123,7 +123,7 @@ kubectl apply -f nginx.yaml
 kubectl apply -f nginx-service.yaml
 ```
 
-Run below to get the details of nginx app in the  cluster.
+Run below to get the details of nginx app in the cluster.
 
 ```
 kubectl get svc nginx -o yaml
@@ -132,6 +132,8 @@ kubectl get svc nginx -o yaml
 Output:
 
 ![images/app_details](images/app_details.png)
+
+Copy the hostname from the above result and paste it to the browser.
 
 Access application on the browser.
 
